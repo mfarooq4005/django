@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block 'content' %}
+      <!-- contact section start -->
+      <div class="contact_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <h1 class="contact_text">Submissions Form</h1>
+                  <form method="post">
+                     {% csrf_token %}
+                     {{sho}}
+                      <button type="submit">Submit</button>
+                      <label>Total Value</label>
+                      <input value="{{full}}">
+                      <label>Percentage</label>
+                      <input value="{{p}}">
+                      <label>Division</label>
+                      <input value="{{d}}">
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- contact section end -->
+      {% endblock %}

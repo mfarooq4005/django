@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block 'content' %}
+      <!-- contact section start -->
+      <div class="contact_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <h1 class="contact_text">Calculator</h1>
+                  <div class="mail_sectin" method="POST">
+                     <form method="POST">
+                        {% csrf_token %}
+                         {{fifa}}
+               <!--                     <input type="text" class="email-bt" placeholder="Name" name="name">-->
+               <select name="operator" class="send_bt">
+                  <option value="+">+</option>
+                  <option value="-">-</option>
+                  <option value="*">*</option>
+                  <option value="/">/</option>
+               </select>
+               <button class="send_bt" type="submit" > Submit</button>
+            </div>
+            {{out}}
+               </form>
+               </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- contact section end -->
+      {% endblock %}

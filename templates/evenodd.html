@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block 'content' %}
+<style>
+    .output-box1212 {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5px;
+    width: 80%;
+    max-width: 100px;
+    text-align: center;
+    user-select: none;
+  }
+</style>
+      <!-- contact section start -->
+      <div class="contact_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <h1 class="contact_text">Even Odd</h1>
+                  <form method="POST">
+                     {% csrf_token %}
+                         {{pot}}
+                      <div class="output-box1212">
+                        <p>{{final_data}}</p>
+                      </div>
+                      <script>
+                        // Disable context menu to prevent copying
+                        document.addEventListener('contextmenu', function(event) {
+                          event.preventDefault();
+                        });
+                      </script>
+                     <button class="send_bt" type="submit" >Submit</button>
+               </form>
+               </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- contact section end -->
+      {% endblock %}
