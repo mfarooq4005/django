@@ -6,7 +6,7 @@ from .forms import calculator
 from .forms import userForms
 from .forms import evenod
 from .forms import sheet
-# from models import titles
+from services.models import titles
 
 var=userForms()
 edu = evenod()
@@ -14,12 +14,11 @@ cal=calculator()
 sh=sheet()
 
 def homePage(request):
-    # titles()
-    # title_data=titles.objects.all()
-    # for a in title_data:
-    #     print(a.main_icon)
-    # print(title_data)
-    return render(request,"index.html")
+    title_data=titles.objects.all().order_by('-main_title')[:3]
+    opdata={
+        'titles':title_data
+    }
+    return render(request,"index.html",opdata)
 def about_us(request):
     return render(request,"about.html")
 def contact(request):
