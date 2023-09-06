@@ -24,7 +24,7 @@ jobs:
     - name: Install Dependencies
       run: |
         python3.11 -m pip install --upgrade pip
-        pip3.11 install -r requirements.txt
+        pip3.11 install django django-autoslug django-db django-paginator django-tinymce
     - name: Run Tests
       run: |
         python3.11 manage.py test
