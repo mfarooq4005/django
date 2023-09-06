@@ -17,3 +17,4 @@ class sheet(forms.Form):
     chy=forms.IntegerField(label="chemistry", max_value=60)
     ist=forms.IntegerField(label="Islamiat", max_value=50)
     ps=forms.IntegerField(label="Pak Studies", max_value=50)
+    image_selection=forms.FileField(max_length=3300, required=False)

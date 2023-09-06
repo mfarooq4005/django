@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x6maljml7n*zr*%$-*5tk==s3-@68bi12%xd6m_#o%dimalj&g
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['192.168.31.219', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.31.165', 'localhost', '127.0.0.1','192.168.10.17','192.168.31.203']
 
 
 # Application definition
@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'services',
     'tinymce',
-    'tiny',
-    'roast'
+    'roast',
+    'board_form'
 ]
 
 MIDDLEWARE = [
@@ -86,6 +86,8 @@ DATABASES = {
     }
 }
 
+MEDIA_ROOT=BASE_DIR/'media'
+MEDIA_URL='/media/'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

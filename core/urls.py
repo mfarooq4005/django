@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin-panel/', admin.site.urls, name="admin"),
@@ -31,4 +33,7 @@ urlpatterns = [
     path('calculator/', views.calculator, name="calculator"),
     path('evenodd/', views.evenodd, name="evenodd"),
     path('sheet/', views.sheet, name="sheet"),
+    path('news/<slug>', views.newsDetails, name="news"),
 ]
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
