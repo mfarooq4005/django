@@ -1,5 +1,41 @@
 {% extends 'base.html' %}
-{% block 'content' %}
+   {% block 'content' %}
+<style>
+   .marquee-container {
+       white-space: nowrap;
+       overflow: hidden;
+       animation: marquee 20s linear infinite;
+       opacity: 0.9;
+       background-color: #333; /* Dark background color */
+   }
+
+   @keyframes marquee {
+       0% {
+           transform: translateX(100%);
+       }
+       100% {
+           transform: translateX(-100%);
+       }
+   }
+
+   .marquee-text {
+       display: inline-block;
+       padding-right: 20px; /* Adjust spacing between items as needed */
+       color: white; /* Set the text color to white */
+   }
+
+   .marquee-text a {
+       text-decoration: none;
+       color: inherit;
+   }
+</style>
+
+<marquee behavior="" direction="" onmouseover="stop()" onmouseout="start()">
+      {% for n in new %}
+      <a href="/news/{{n.news_slug}}">{{n.news_title}} &nbsp; &nbsp; &nbsp; &nbsp;</a>
+      {% endfor %}
+   </marquee>
+
       <!-- banner section start -->
       <div class="banner_section layout_padding">
          <div class="container">
@@ -45,6 +81,11 @@
             <h1 class="services_taital">our services</h1>
             <p class="many_taital">There are many variations of passages of Lorem Ipsum </p>
             <div class="services_section2 layout_padding">
+               <form method="post">
+                  {% csrf_token %}
+                  <input type="text" name="search_title" placeholder="Search">
+                  <input type="submit" value="Search">
+               </form>
                <div class="row">
                   {% for n in titles%}
                   <div class="col-lg-3 col-sm-6">
@@ -55,7 +96,10 @@
                         <div class="read_bt"><a href="#">Read More</a></div>
                      </div>
                   </div>
+                  {%empty%}
+                  No Data Found
                   {% endfor %}
+                 
                   <!-- <div class="col-lg-3 col-sm-6">
                      <div class="icon_1"><img src="/static/images/icon-2.png"></div>
                      <h2 class="furnitures_text">office</h2>
@@ -79,7 +123,45 @@
                      <div class="read_bt_main">
                         <div class="read_bt"><a href="#">Read More</a></div> -->
                      </div>
+                     <br>
+                     <br>
+                     <nav aria-label="...">
+                        <ul class="pagination">
+                           {% if titles.has_previous %}
+                          <li class="page-item ">  
+                          <a class="page-link" href="/?page=1" tabindex="-1">First</a>
+                        </li>
+                        <li class="page-item ">
+                          <a class="page-link" href='/?page={{titles.previous_page_number}}' tabindex="-1">Previous</a>
+                        </li>
+                           {% endif %}
+                          
+                          {% for i in total_numbers %}
+                          <li class="page-item"><a class="page-link" href="/?page={{i}}">{{i}}</a></li>
+                           
+                          {% endfor %}
+                           
+                          <!-- <li class="page-item">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                          </li>
+                            <li class="page-item active">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                           -->
+                          {% if titles.has_next %} 
+                          <li class="page-item">
+                          <a class="page-link" href='/?page={{actual_numbers}}'>Last</a>
+                          </li>
+                          <li class="page-item">
+                          <a class="page-link" href='/?page={{titles.next_page_number}}'>Next</a>
+                          </li>
+                          {% endif %}
+                           
+                        </ul>
+                      </nav>      
                   </div>
+               
                </div>
             </div>
          </div>
